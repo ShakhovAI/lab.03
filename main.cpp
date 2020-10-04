@@ -16,17 +16,17 @@ vector<double> input_numbers(istream& in, size_t count)
 }
 
 Input
-read_input(istream& in) {
+read_input(istream& in, bool prompt) {
     Input data;
 
-    cerr << "Enter number count: ";
+    if (prompt) cerr << "Enter number count: ";
     size_t number_count;
     in >> number_count;
 
-    cerr << "Enter numbers: ";
+    if (prompt) cerr << "Enter numbers: ";
     data.numbers = input_numbers(in, number_count);
 
-    cerr << "Enter bin count: ";
+    if (prompt) cerr << "Enter bin count: ";
     size_t bin_count;
     in >> bin_count;
     data.bin_count = bin_count;
@@ -34,11 +34,13 @@ read_input(istream& in) {
     return data;
 }
 
-vector<size_t> make_histogram(const Input& input, double numbers_min, double numbers_max)
+vector<size_t> make_histogram(const Input& input)
 {
     auto bin_count = input.bin_count;
     auto numbers = input.numbers;
     vector<size_t> bins(bin_count);
+    double numbers_min, numbers_max;
+    find_minmax(numbers, numbers_min, numbers_max);
     for (double number : numbers)
     {
         size_t bin = (size_t)((number - numbers_min) / (numbers_max - numbers_min) * bin_count);
@@ -53,14 +55,7 @@ vector<size_t> make_histogram(const Input& input, double numbers_min, double num
 
 int main()
 {
-    Input input_data = read_input(cin);
-
-    double numbers_min, numbers_max;
-    find_minmax(input_data.numbers, numbers_min, numbers_max);
-
-    auto bins = make_histogram(input_data, numbers_min, numbers_max);
-
+    const auto input_data = read_input(cin, true);
+    const auto bins = make_histogram(input_data);
     show_histogram_svg(bins); ///
-
-return 0;
 }
