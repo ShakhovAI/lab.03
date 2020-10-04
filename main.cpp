@@ -36,10 +36,19 @@ vector<size_t> make_histogram(int bin_count, const vector<double>& numbers, doub
 int main()
 {
     DWORD info = GetVersion();
-    DWORD mask = 0b00000000'00000000'11111111'11111111;
+    DWORD mask = 0x0000ffff;
+    DWORD mask_major = 0x000000f;
+    DWORD platform = info >> 16;
     DWORD version = info & mask;
-    printf("Windows 10x-version is %d\n", version);
-    printf("Windows 16x-version is %x\n", version);
+
+    DWORD version_major = version & mask_major;
+    DWORD version_minor = version >>8;
+
+    printf ("Windows 10x-version is %u.\n", version);
+    printf ("Windows 16x-version is %x.\n", version);
+    printf ("Platform is %u.\n", platform);
+    printf ("Windows major version is %u.\n", version_major);
+    printf ("Windows minor version is %u.\n", version_minor);
 
     return 0;
 
