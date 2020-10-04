@@ -44,11 +44,7 @@ int main()
     DWORD version_major = version & mask_major;
     DWORD version_minor = version >>8;
 
-    printf ("Windows 10x-version is %u.\n", version);
-    printf ("Windows 16x-version is %x.\n", version);
-    printf ("Platform is %u.\n", platform);
-    printf ("Windows major version is %u.\n", version_major);
-    printf ("Windows minor version is %u.\n", version_minor);
+    printf ("Windows v%u.%u (build %u)\n", version_major, version_minor, platform);
 
     return 0;
 
