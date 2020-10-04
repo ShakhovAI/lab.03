@@ -44,7 +44,12 @@ int main()
     DWORD version_major = version & mask_major;
     DWORD version_minor = version >>8;
 
+    char computer_name[MAX_COMPUTERNAME_LENGTH+1];
+    DWORD size = sizeof(computer_name);
+    GetComputerName(computer_name, &size);
+
     printf ("Windows v%u.%u (build %u)\n", version_major, version_minor, platform);
+    printf ("Computer name: %s\n", computer_name);
 
     return 0;
 
