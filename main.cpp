@@ -56,11 +56,12 @@ vector<size_t> make_histogram(const Input& input)
 
 int main(int argc, char* argv[])
 {
-    if (argc > 1) {
-        cout << "argc = " << argc << endl;
-        for (auto i = 0; i < argc; i++) {
-            cout << "argv[" << i << "] = " << argv[i] << endl;
-        }
+    CURL *curl = curl_easy_init();
+    if (argc > 1 && curl) {
+        CURLcode res;
+        curl_easy_setopt(curl, CURLOPT_URL, argv[0]);
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
     }
     curl_global_init(CURL_GLOBAL_ALL);
     const auto input_data = read_input(cin, true);
