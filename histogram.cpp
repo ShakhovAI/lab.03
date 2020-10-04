@@ -1,11 +1,12 @@
 #include "histogram.h"
 #include <iostream>
 #include <cassert>
+using namespace std;
 
 void find_minmax(vector<double> numbers, double& min, double& max)
 {
     if (numbers.empty()) {
-        std::cerr << "vector is empty\n";
+        cerr << "vector is empty\n";
         assert(false);
         return;
     }
