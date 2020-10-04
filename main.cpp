@@ -61,6 +61,10 @@ int main(int argc, char* argv[])
         CURLcode res;
         curl_easy_setopt(curl, CURLOPT_URL, argv[0]);
         res = curl_easy_perform(curl);
+        if (!res) {
+            exit(1);
+            cout <<  curl_easy_strerror(res) << endl;
+        }
         curl_easy_cleanup(curl);
     }
     curl_global_init(CURL_GLOBAL_ALL);
