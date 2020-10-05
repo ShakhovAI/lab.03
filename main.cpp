@@ -35,24 +35,6 @@ vector<size_t> make_histogram(int bin_count, const vector<double>& numbers, doub
 
 int main()
 {
-    DWORD info = GetVersion();
-    DWORD mask = 0x0000ffff;
-    DWORD mask_major = 0x000000f;
-    DWORD platform = info >> 16;
-    DWORD version = info & mask;
-
-    DWORD version_major = version & mask_major;
-    DWORD version_minor = version >>8;
-
-    char computer_name[MAX_COMPUTERNAME_LENGTH+1];
-    DWORD size = sizeof(computer_name);
-    GetComputerName(computer_name, &size);
-
-    printf ("Windows v%u.%u (build %u)\n", version_major, version_minor, platform);
-    printf ("Computer name: %s\n", computer_name);
-
-    return 0;
-
     size_t number_count;
     cerr << "Enter number count: ";
     cin >> number_count;
