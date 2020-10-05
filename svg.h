@@ -54,9 +54,9 @@ void show_histogram_svg(const vector<size_t>& bins)
         break;
     case 60: svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "blue", "blue");
         break;
-}
-    top += BIN_HEIGHT;
     }
+    top += BIN_HEIGHT;
+}
 
 
     DWORD info = GetVersion();
@@ -74,8 +74,7 @@ void show_histogram_svg(const vector<size_t>& bins)
 
     cout << "<text x='5' y='120'> Windows v" << version_major<< "."<< version_minor<<" (build "<< platform <<")"<<"</text>"<<'\n';
     cout << "<text x='5' y='140'> Computer name: " << computer_name << "</text>"<<'\n';
-
     svg_end();
 }
 
-#endif // SVG_H_INCLUDED
+#endif

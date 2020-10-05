@@ -29,7 +29,7 @@ void test_equal_numbers() {
 void test_number() {
     double min = 0;
     double max = 0;
-    find_minmax({}, min, max);
+    find_minmax({0}, min, max);
     assert(min == 0);
     assert(max == 0);
 }
